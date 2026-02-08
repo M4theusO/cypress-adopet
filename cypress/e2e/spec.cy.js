@@ -16,6 +16,7 @@ describe('Página de principal', () => {
     cy.get('.button[href="/home"]').click()
     cy.url().should('include', '/home')
   })
+
   it('Visita a página de principal do AdoPet e testa os botões header', () => {
     cy.visit('https://adopet-frontend-cypress.vercel.app/')
     cy.get('[href="/"]').click()
@@ -37,6 +38,7 @@ describe('Página home', () => {
     cy.visit('https://adopet-frontend-cypress.vercel.app/home')
     cy.url().should('include', '/home')
   })
+  
   it('Clicar em falar com responsavel no card de um pet', () => {
     cy.visit('https://adopet-frontend-cypress.vercel.app/home')
     cy.get('.card').first().find('[href="/mensagem"]').click()
