@@ -4,11 +4,19 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "clean": "rmdir /s /q cypress\\results || exit 0",
+    "cy:run": "cypress run",
+    "merge": "npx mochawesome-merge \"cypress/results/*.json\" --output cypress/results/report.json",
+    "report": "npx marge cypress/results/report.json -f report -o cypress/results",
+    "test:full": "npm run clean && npm run cy:run && npm run merge && npm run report"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "cypress": "^13.6.4"
+    "cypress": "^13.6.4",
+    "mochawesome": "^7.1.4",
+    "mochawesome-merge": "^5.1.1",
+    "mochawesome-report-generator": "^6.3.2"
   }
 }

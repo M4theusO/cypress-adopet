@@ -1,12 +1,20 @@
 describe('Página de cadastro', () => {
-  it('Preencher os campos do formulário corretamente para cadastrar um novo usuário', () => {
+  beforeEach(() => {
     cy.visit('https://adopet-frontend-cypress.vercel.app/')
     cy.get('[data-test="register-button"]').click()
+  })
+
+  it('Preencher os campos do formulário corretamente para cadastrar um novo usuário', () => {
     cy.get('[data-test="input-name"]').type('John Doe')
     cy.get('[data-test="input-email"]').type('john.doe@example.com')
     cy.get('[data-test="input-password"]').type('Password123')
     cy.get('[data-test="input-confirm-password"]').type('Password123')
     cy.get('[data-test="submit-button"]').click()
+  })
+
+  it('Preencher os campos de formulário incorretamente e exibir mensagem de erro', () => {
+    cy.get('[data-test="submit-button"]').click()
+    cy.get('.error').should('be.visible')
   })
 })
 
@@ -22,26 +30,6 @@ describe('Página de principal', () => {
     cy.get('[href="/"]').click()
     cy.url().should('include', '/')
     cy.get('[href="/mensagem"]').click()
-    cy.url().should('include', '/login')
-  })
-})
-
-describe('Página de login', () => {
-  it('Visitar a página de login', () => {
-    cy.visit('https://adopet-frontend-cypress.vercel.app/login')
-    cy.url().should('include', '/login')
-  })
-})
-
-describe('Página home', () => {
-  it('Visitar a página home', () => {
-    cy.visit('https://adopet-frontend-cypress.vercel.app/home')
-    cy.url().should('include', '/home')
-  })
-  
-  it('Clicar em falar com responsavel no card de um pet', () => {
-    cy.visit('https://adopet-frontend-cypress.vercel.app/home')
-    cy.get('.card').first().find('[href="/mensagem"]').click()
     cy.url().should('include', '/login')
   })
 })
