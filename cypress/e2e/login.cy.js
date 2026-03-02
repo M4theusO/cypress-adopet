@@ -9,8 +9,8 @@ describe('Página de login', () => {
     })
 
     it('Deve preencher os campos de login corretamente e autenticar o usuário', () => {
-      cy.get('[data-test="input-loginEmail"]').type('matthheus.1414@gmail.com')
-      cy.get('[data-test="input-loginPassword"]').type('Matheus2309')
+      cy.get('[data-test="input-loginEmail"]').type('john.doe@example.com')
+      cy.get('[data-test="input-loginPassword"]').type('Password123')
       cy.get('[data-test="submit-button"]').click()
       cy.url().should('include', '/home')
     })
@@ -28,8 +28,8 @@ describe('Página de login', () => {
       cy.get('.header__message').click()
     })
     it('Deve preencher os campos de login corretamente e autenticar o usuário', () => {
-      cy.get('[data-test="input-loginEmail"]').type('matthheus.1414@gmail.com')
-      cy.get('[data-test="input-loginPassword"]').type('Matheus2309')
+      cy.get('[data-test="input-loginEmail"]').type('john.doe@example.com')
+      cy.get('[data-test="input-loginPassword"]').type('Password123')
       cy.get('[data-test="submit-button"]').click()
       cy.url().should('include', '/home')
     })
