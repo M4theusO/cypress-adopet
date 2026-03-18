@@ -11,7 +11,7 @@ describe('Página de login', () => {
     })
 
     it('Deve preencher os campos de login corretamente e autenticar o usuário', () => {
-      cy.login('matthheus.1414@gmail.com', 'Matheus2309')
+      cy.login('john.doe@example.com', 'Password123')
     })
 
     it('Deve exibir mensagem de erro ao tentar fazer login com credenciais inválidas', () => {
@@ -20,7 +20,7 @@ describe('Página de login', () => {
     })
 
     it('Deve exibir mensagem de erro ao tentar fazer login com email válido e senha inválida', () => {
-      cy.login('matthheus.1414@gmail.com', 'Matheus2309')
+      cy.login('john.doe@example.com', 'Password123')
       cy.wait('@stubPost')
       cy.contains('Falha no login. Consulte suas credenciais.').should('be.visible')
     })
@@ -29,7 +29,7 @@ describe('Página de login', () => {
   describe('Fazer login através do ícone de mensagens', () => {
     it('Deve preencher os campos de login corretamente e autenticar o usuário', () => {
       cy.get('.header__message').click()
-      cy.login('matthheus.1414@gmail.com', 'Matheus2309')
+      cy.login('john.doe@example.com', 'Password123')
     })
   })
 
