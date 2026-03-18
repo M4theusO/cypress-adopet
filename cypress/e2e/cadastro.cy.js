@@ -5,17 +5,14 @@ describe('Página de cadastro', () => {
   })
 
   it('Preencher os campos do formulário corretamente para cadastrar um novo usuário', () => {
-    cy.get('[data-test="input-name"]').type('John Doe')
-    cy.get('[data-test="input-email"]').type('john.doe@example.com')
-    cy.get('[data-test="input-password"]').type('Password123')
-    cy.get('[data-test="input-confirm-password"]').type('Password123')
-    cy.get('[data-test="submit-button"]').click()
+    cy.cadastrar('John Doe', 'john.doe@example.com', 'Password123')
   })
 
   it('Preencher os campos de formulário incorretamente e exibir mensagem de erro', () => {
     cy.get('[data-test="submit-button"]').click()
     cy.get('.error').should('be.visible')
   })
+  
 })
 
 describe('Página de principal', () => {
