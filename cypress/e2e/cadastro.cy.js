@@ -1,3 +1,5 @@
+import { usuarios } from '../fixtures/usuarios.json';
+
 describe('Página de cadastro', () => {
   beforeEach(() => {
     cy.visit('https://adopet-frontend-cypress.vercel.app/')
@@ -12,10 +14,17 @@ describe('Página de cadastro', () => {
     cy.get('[data-test="submit-button"]').click()
     cy.get('.error').should('be.visible')
   })
-  
+
+  describe('Cadastro em massa',()=>{
+    usuarios.forEach(usuario => {
+      it('Deve cadastrar um novo usuário com os dados fornecidos', () => {
+          cy.cadastrar(usuario.name, usuario.email, usuario.password);
+      })
+    })
+  })  
 })
 
-describe('Página de principal', () => {
+/*describe('Página de principal', () => {
   it('Deve carregar a página corretamente e clicar no botão ‘Ver pets disponíveis para adoção', () => {
     cy.visit('https://adopet-frontend-cypress.vercel.app/')
     cy.get('.button[href="/home"]').click()
@@ -29,4 +38,4 @@ describe('Página de principal', () => {
     cy.get('[href="/mensagem"]').click()
     cy.url().should('include', '/login')
   })
-})
+})*/

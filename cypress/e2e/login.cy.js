@@ -20,6 +20,11 @@ describe('Página de login', () => {
     })
 
     it('Deve exibir mensagem de erro ao tentar fazer login com email válido e senha inválida', () => {
+      cy.login('john.doe@example.com', 'invalidpassword')
+      cy.get('.error').should('be.visible')
+    })
+
+    it('Deve falhar mesmo que os campos sejam preenchidos corretamente', () => {
       cy.login('john.doe@example.com', 'Password123')
       cy.wait('@stubPost')
       cy.contains('Falha no login. Consulte suas credenciais.').should('be.visible')
